@@ -58,7 +58,7 @@ const register = async (req, res = response) => {
   // Save in BD
   await user.save();
 
-  res.json({
+  res.status(201).json({
     // user
     msg: "Congrats, your user is successfully created!",
   });

@@ -4,7 +4,7 @@
   "description": "Backend assessment for make it real bootcamp - develop a RESTful API",
   "main": "app.js",
   "scripts": {
-    "test": "npm test",
+    "test": "jest --watch",
     "start": "nodemon app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
