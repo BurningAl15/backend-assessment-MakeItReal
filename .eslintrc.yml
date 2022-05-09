@@ -1,0 +1,19 @@
+env:
+  commonjs: true
+  es2021: true
+  node: true
+extends:
+  - airbnb-base
+  - plugin:prettier/recommended
+globals:
+  afterAll: writable
+  beforeAll: writable
+  beforeEach: writable
+  describe: writable
+  expect: writable
+  it: writable
+parserOptions:
+  ecmaVersion: latest
+plugins:
+  - prettier
+rules: { prettier/prettier: warn }

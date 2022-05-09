@@ -1,50 +1,52 @@
-const express = require('express');
-const cors = require('cors');
+/* eslint-disable global-require */
+/* eslint-disable class-methods-use-this */
+const express = require("express");
+const cors = require("cors");
 
-const { dbConnection } = require('../database/config');
+const { dbConnection } = require("../database/config");
 
 class Server {
-    constructor() {
-        this.app = express();
-        this.port = process.env.PORT;
-        this.favsPath = '/api/favs';
-        this.authPath = '/auth/local';
+  constructor() {
+    this.app = express();
+    this.port = process.env.PORT;
+    this.favsPath = "/api/favs";
+    this.authPath = "/auth/local";
 
-        // Conectar a base de datos
-        this.connectDB();
+    // Conectar a base de datos
+    this.connectDB();
 
-        // Middlewares
-        this.middlewares();
+    // Middlewares
+    this.middlewares();
 
-        // Rutas de mi app
-        this.routes();
-    }
+    // Rutas de mi app
+    this.routes();
+  }
 
-    async connectDB() {
-        await dbConnection();
-    }
+  async connectDB() {
+    await dbConnection();
+  }
 
-    middlewares() {
-        // CORS
-        this.app.use(cors());
+  middlewares() {
+    // CORS
+    this.app.use(cors());
 
-        // Read and Parse from body
-        this.app.use(express.json());
+    // Read and Parse from body
+    this.app.use(express.json());
 
-        // Public Directory
-        this.app.use(express.static('public'));
-    }
+    // Public Directory
+    this.app.use(express.static("public"));
+  }
 
-    routes() {
-        this.app.use(this.authPath, require('../routes/auth'));
-        this.app.use(this.favsPath, require('../routes/favs'));
-    }
+  routes() {
+    this.app.use(this.authPath, require("../routes/auth"));
+    this.app.use(this.favsPath, require("../routes/favs"));
+  }
 
-    listen() {
-        this.app.listen(this.port, () => {
-            console.log('Server running on port', this.port);
-        })
-    }
+  listen() {
+    this.app.listen(this.port, () => {
+      console.log("Server running on port", this.port);
+    });
+  }
 }
 
 module.exports = Server;
